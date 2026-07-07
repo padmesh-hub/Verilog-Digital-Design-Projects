@@ -4,3 +4,8 @@
 Description: Implemented a basic asynchronous Set-Reset (SR) latch using behavioral Verilog. Because it is level-sensitive and has no clock, outputs respond immediately to changes on the S and R inputs.
 Key Concepts: Level-sensitive latching behavior, bistable storage, and the behavior of the invalid/forbidden state (S=1, R=1) where both outputs are driven to the same logic level, breaking the normal complementary relationship between Q and Q̄.
 Verification: Developed a functional testbench to apply all input combinations and verify the resulting truth table outputs during simulation.
+
+2. SR Flip-Flop (FSM Approach)
+Description: Implemented a synchronous Set-Reset (SR) flip-flop modeled explicitly as a Finite State Machine (FSM) using behavioral Verilog. Unlike an asynchronous latch, this design is edge-triggered by a clock signal, meaning state transitions occur only on the rising edge of the clock based on the present state and current inputs.
+Key Concepts: Clock-edge synchronization, active-high synchronous reset logic, two-state sequential modeling (s0 and s1), and deterministic next-state decoding using a combinational case statement that forces an unknown logic level (1'bx) during the forbidden state (S=1, R=1).
+Verification: Developed a functional testbench including automated clock generation and sequential stimulus injection to walk the design through hold, reset, set, and forbidden operational phases during simulation.
