@@ -17,7 +17,5 @@ Verification: Implemented a testbench structure to assert an initial asynchronou
 
 4. JK Flip-Flop (FSM Approach)
 Description: Implemented a synchronous JK flip-flop modeled explicitly as a Finite State Machine (FSM) using behavioral Verilog. This design overcomes the invalid state limitation of a standard SR flip-flop by enabling a deterministic toggle behavior when both execution control inputs are asserted simultaneously.
-
 Key Concepts: Synchronous active-high reset logic, concatenation-based input bus decoding (i = {j, k}), two-state sequential modeling (s0 and s1), and explicit implementation of the complete state transition matrix (Hold 00, Reset 01, Set 10, and Toggle 11) using a robust multi-block FSM style.
-
 Verification: Formulated a functional testbench to verify sequential operations across changing state bounds, focusing closely on tracking the active clock edges to validate correct state inversion during continuous toggle conditions.
