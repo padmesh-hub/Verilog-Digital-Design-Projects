@@ -12,7 +12,5 @@ Verification: Developed a functional testbench including automated clock generat
 
 3. D Flip-Flop (FSM Approach)
 Description: Implemented a synchronous D (Data) flip-flop modeled explicitly as a Finite State Machine (FSM) using behavioral Verilog. The design utilizes an edge-triggered sequential structure where the output captures the value of the D input at the rising edge of the clock and holds it until the next active clock edge.
-
 Key Concepts: Edge-triggered state transitions, active-high asynchronous reset logic (posedge rst), two-state sequential modeling (s0 and s1), and a decoupled three-block FSM design pattern (separating state transitions, next-state combinational logic, and output decode logic to maintain strict complementary behavior between q and qbar).
-
 Verification: Implemented a testbench structure to assert an initial asynchronous reset condition and dynamically toggle the data input relative to the clock edges to confirm deterministic input tracking and stable state retention.
