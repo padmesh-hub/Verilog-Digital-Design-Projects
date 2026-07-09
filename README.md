@@ -39,3 +39,10 @@ Zero-Lag SIPO Simulation Sync: Eliminates the typical 1-clock-cycle non-blocking
 Synchronous Safe-Latch Data Holding: Employs a load signal acting as a clock-enable barrier. In PISO mode, it coordinates the switch between parallel data capture and serial bit extraction. In PIPO mode, pulling load = 0 creates a hardware hold state, isolating the flip-flops and shielding the stored data from dynamic combinational noise or toggling occurring on the w_in pins.
 
 Verification: Developed a chronological, single-loop verification testbench (tb_universal_register.v) to systematically validate all seven operational pathways. The simulation flow executes an immediate asynchronous reset check to verify edge-independent clearing, runs a PIPO data capture and retention test to verify the hardware hold state, streams serial bits over individual clock edges to verify SIPO parallel bus growth, and toggles control pins to extract parallel arrays out of the single serial output line (b_out) using precise 1-clock-cycle delay steps (#20).
+
+8. Mod-4 Up/Down Counter (Synchronous)
+Description: Implemented a hardware-efficient 2-bit (Mod-4) synchronous up/down counter using sequential Verilog HDL. Because the design is edge-triggered, all internal state transitions occur deterministically and simultaneously on the rising edge of the system clock.
+
+Key Concepts: Edge-triggered register allocation, synchronous reset execution (eliminating asynchronous layout hazards), count-enable isolation to prevent unnecessary signal switching, and dynamic mode configuration to control directional progression without introducing combinational logic glitches.
+
+Verification: Developed a self-contained testbench to simulate the hardware across multiple clock cycles, confirming proper operation of the active-high reset sequence, verifying uninterrupted up/down counting boundaries, and validating steady-state hold performance when the design is disabled.
