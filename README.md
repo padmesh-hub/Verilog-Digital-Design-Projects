@@ -46,3 +46,10 @@ Description: Implemented a hardware-efficient 2-bit (Mod-4) synchronous up/down 
 Key Concepts: Edge-triggered register allocation, synchronous reset execution (eliminating asynchronous layout hazards), count-enable isolation to prevent unnecessary signal switching, and dynamic mode configuration to control directional progression without introducing combinational logic glitches.
 
 Verification: Developed a self-contained testbench to simulate the hardware across multiple clock cycles, confirming proper operation of the active-high reset sequence, verifying uninterrupted up/down counting boundaries, and validating steady-state hold performance when the design is disabled.
+
+9.VGA Controller (Synchronous with Active-High Sync)
+Description: Implemented a synchronous 640x480 @ 60Hz VGA controller using behavioral Verilog tailored for hardware implementations. Unlike basic asynchronous designs, all counter updates and register transitions are tightly synchronized to a 100 MHz master clock domain using a glitcheless 25 MHz pixel clock enable pulse.
+
+Key Concepts: Clock enable generation rather than logic-generated clocks to prevent timing violations, active-high synchronization pulse windows (hsync and vsync) restricted precisely to horizontal and vertical retrace boundaries, and real-time generation of visible region logic flags (video_on) to gate digital-to-analog color output.
+
+Verification: Created a comprehensive top-level test wrapper module to map internal logic to physical hardware constraints (switches, buttons, and VGA ports) alongside a behavioral testbench to simulate the 100 MHz clock stimulus, verifying precise counter roll-overs and pulse widths via waveform analysis before physical deployment.
