@@ -53,3 +53,13 @@ Description: Implemented a synchronous 640x480 @ 60Hz VGA controller using behav
 Key Concepts: Clock enable generation rather than logic-generated clocks to prevent timing violations, active-high synchronization pulse windows (hsync and vsync) restricted precisely to horizontal and vertical retrace boundaries, and real-time generation of visible region logic flags (video_on) to gate digital-to-analog color output.
 
 Verification: Created a comprehensive top-level test wrapper module to map internal logic to physical hardware constraints (switches, buttons, and VGA ports) alongside a behavioral testbench to simulate the 100 MHz clock stimulus, verifying precise counter roll-overs and pulse widths via waveform analysis before physical deployment.
+
+10. Overlapping 101101 Sequence Detector (Mealy & Moore FSMs)
+Description: Implemented a robust sequence detector using Finite State Machine (FSM) methodologies to recognize the specific overlapping bit pattern 101101. The repository showcases two distinct architectural approaches: a highly efficient 6-state Mealy machine with fully synchronized, glitch-free outputs, and a 7-state Moore machine utilizing state-splitting principles to isolate output behavior purely within the current state.
+
+Key Concepts:
+   Overlapping Pattern Recognition: Tracks historical bit streams to instantly reuse the trailing suffix 101 of a successful detection as the leading prefix for      the subsequent target sequence, optimizing detection latency.
+   State Minimization & Equivalency: Demonstrates that a Mealy architecture requires exactly N states (6 states) for an N-bit sequence, whereas a Moore               architecture necessitates N+1 states (7 states) to handle output isolation without redundant logic paths.
+   Synchronous Hazard Mitigation: Resolves the classical hazard of asynchronous combinational output glitching inherent to standard Mealy designs by driving          the output register through a dedicated sequential block synchronized to the clock edge.
+
+Verification: Developed an advanced testbench utilizing custom, phase-shifted manual timing delays to feed the composite overlapping stream 101101101. By scheduling data transitions precisely within the low-phase of the clock cycle, the setup completely eliminates simulator edge-race conditions, verifying perfectly aligned, clock-synchronized double-detection waveforms in Vivado.
